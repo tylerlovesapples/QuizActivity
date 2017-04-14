@@ -9,6 +9,10 @@ import android.widget.Button;
 import java.io.Console;
 
 public class QuizActivity extends AppCompatActivity {
+   /** Tag for this class */
+   public static final String TAG = "QuizActivity";
+
+   Question tempQuestion = new Question();
 
    //Start quiz button
    private Button mStartButton;
@@ -29,13 +33,21 @@ public class QuizActivity extends AppCompatActivity {
       //get reference to
       mListButton = (Button) findViewById(R.id.questionList);
 
+      tempQuestion.setQuestion("What's my name?");
+      tempQuestion.addAnswer("Tyler Thomas", true);
+      tempQuestion.addAnswer("Markus Oh", true);
+      tempQuestion.addAnswer("Gordon Freeman", false);
+      tempQuestion.addAnswer("Jason Illegal", false);
+
       /*
       Set onClick listener to respond when the user taps the button
        */
       mStartButton.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View v) {
-            Log.d("Taggy", "mStartButton clicked");
+            Log.d(TAG, "mStartButton clicked");
+            Log.d(TAG, tempQuestion.toString());
+            tempQuestion.removePosition(0);
          }
       });
 
